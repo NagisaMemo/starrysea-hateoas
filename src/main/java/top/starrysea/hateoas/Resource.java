@@ -32,7 +32,12 @@ public class Resource {
 	}
 
 	protected Link linkTo(Class<?> clazz, String method, Map<String, String> inArg, Map<String, Object> template) {
-		return LinkBinding.linkTo(clazz, method, inArg, template);
+		return linkTo(clazz, method, inArg, template, null);
+	}
+
+	protected Link linkTo(Class<?> clazz, String method, Map<String, String> inArg, Map<String, Object> template,
+			String rel) {
+		return LinkBinding.linkTo(clazz, method, inArg, template, rel);
 	}
 
 }

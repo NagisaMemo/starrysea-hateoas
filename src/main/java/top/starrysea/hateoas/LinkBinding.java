@@ -18,7 +18,8 @@ public class LinkBinding implements InitializingBean {
 	private RequestMappingHandlerMapping handlerMapping;
 	private static Map<RequestMappingInfo, HandlerMethod> controllerHandlerMapping;
 
-	public static Link linkTo(Class<?> clazz, String method, Map<String, String> inArg, Map<String, Object> template) {
+	public static Link linkTo(Class<?> clazz, String method, Map<String, String> inArg, Map<String, Object> template,
+			String rel) {
 		for (Map.Entry<RequestMappingInfo, HandlerMethod> m : controllerHandlerMapping.entrySet()) {
 			HandlerMethod handlerMethod = m.getValue();
 			if (handlerMethod.getMethod().getDeclaringClass() == clazz
@@ -28,7 +29,6 @@ public class LinkBinding implements InitializingBean {
 						.toArray(new PathPattern[0])[0];
 				RequestMethod requestMethod = requestMappingInfo.getMethodsCondition().getMethods()
 						.toArray(new RequestMethod[0])[0];
-				Link link;
 				String url = pattern.getPatternString();
 				if (inArg != null) {
 					for (Map.Entry<String, String> entry : inArg.entrySet()) {
@@ -37,12 +37,7 @@ public class LinkBinding implements InitializingBean {
 						}
 					}
 				}
-				if (template != null) {
-					link = new Link(url, requestMethod, template);
-				} else {
-					link = new Link(url, requestMethod);
-				}
-				return link;
+				return new Link(url, requestMethod, template, rel);
 			}
 		}
 		throw new NullPointerException("没有找到" + clazz.getName() + "类的" + method + "方法");
