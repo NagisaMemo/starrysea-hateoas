@@ -19,7 +19,7 @@ public class LinkBinding implements InitializingBean {
 	private static Map<RequestMappingInfo, HandlerMethod> controllerHandlerMapping;
 
 	public static Link linkTo(Class<?> clazz, String method, Map<String, String> inArg, Map<String, Object> template,
-			String rel) {
+			RelType rel) {
 		for (Map.Entry<RequestMappingInfo, HandlerMethod> m : controllerHandlerMapping.entrySet()) {
 			HandlerMethod handlerMethod = m.getValue();
 			if (handlerMethod.getMethod().getDeclaringClass() == clazz

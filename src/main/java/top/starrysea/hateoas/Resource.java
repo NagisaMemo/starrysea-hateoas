@@ -36,7 +36,7 @@ public class Resource {
 	}
 
 	protected Link linkTo(Class<?> clazz, String method, Map<String, String> inArg, Map<String, Object> template,
-			String rel) {
+			RelType rel) {
 		return LinkBinding.linkTo(clazz, method, inArg, template, rel);
 	}
 
