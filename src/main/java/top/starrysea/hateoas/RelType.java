@@ -2,5 +2,15 @@ package top.starrysea.hateoas;
 
 public enum RelType {
 
-	PREV,NEXT;
+	PREV("prev"), NEXT("next");
+	private String name;
+
+	RelType(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
 }
