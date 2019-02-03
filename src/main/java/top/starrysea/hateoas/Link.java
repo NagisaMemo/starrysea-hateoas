@@ -9,7 +9,7 @@ public class Link {
 	private String href;
 	private RequestMethod method;
 	private Map<String, Object> template;
-	private String rel;
+	private RelType rel;
 
 	Link(String href) {
 		this(href, RequestMethod.GET);
@@ -20,10 +20,10 @@ public class Link {
 	}
 
 	Link(String href, RequestMethod method, Map<String, Object> template) {
-		this(href, method, template, "next");
+		this(href, method, template, RelType.NEXT);
 	}
 
-	Link(String href, RequestMethod method, Map<String, Object> template, String rel) {
+	Link(String href, RequestMethod method, Map<String, Object> template, RelType rel) {
 		this.href = href;
 		this.method = method;
 		this.template = template;
@@ -42,7 +42,7 @@ public class Link {
 		return template;
 	}
 
-	public String getRel() {
+	public RelType getRel() {
 		return rel;
 	}
 
